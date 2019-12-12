@@ -1,48 +1,116 @@
 <nb-card>
-  <nb-card-header> Who are you ?</nb-card-header>
+  <nb-card-header> What good do you want to do today ?</nb-card-header>
   <nb-card-body>
-    <form #zeroForm="ngForm" [formGroup]="zeroStep" (ngSubmit)="onZeroStepSubmit(zeroForm)" novalidate>
+    <form
+      #zeroForm="ngForm"
+      [formGroup]="zeroStep"
+      (ngSubmit)="onZeroStepSubmit(zeroForm)"
+      novalidate
+    >
       <nb-radio-group formControlName="donatorType">
-        <nb-radio [value]="donatorTypes.Individual">{{donatorTypes.Individual}}</nb-radio>
-        <nb-radio [value]="donatorTypes.Company">{{ donatorTypes.Company }}</nb-radio>
+        <nb-radio [value]="donatorTypes.Individual">{{
+          donatorTypes.Individual
+        }}</nb-radio>
+        <nb-radio [value]="donatorTypes.Company">{{
+          donatorTypes.Company
+        }}</nb-radio>
       </nb-radio-group>
     </form>
     <hr />
-    <form #firstForm="ngForm" [hidden]="firstStep.disabled" [formGroup]="firstStep"
-      (ngSubmit)="onFirstStepSubmit(firstForm)">
+    <form
+      #firstForm="ngForm"
+      [hidden]="firstStep.disabled"
+      [formGroup]="firstStep"
+      (ngSubmit)="onFirstStepSubmit(firstForm)"
+    >
       <nb-radio-group formControlName="donationType">
-        <nb-radio [value]="donationTypes.OneTime"> {{ donationTypes.OneTime }}</nb-radio>
-        <nb-radio [value]="donationTypes.Recurring"> {{ donationTypes.Recurring }}</nb-radio>
+        <nb-radio [value]="donationTypes.OneTime">
+          {{ donationTypes.OneTime }}</nb-radio
+        >
+        <nb-radio [value]="donationTypes.Recurring">
+          {{ donationTypes.Recurring }}</nb-radio
+        >
       </nb-radio-group>
-      <input nbInput [hidden]="firstStep.get('donationAmount').disabled" name="donationAmount"
-        formControlName="donationAmount" type="number" />
-      <nb-select placeholder="Valitse summa" ngModel [ngModelOptions]="{ standalone: true }"
-        (ngModelChange)="onPredefinedAmountChange($event)">
+      <nb-select
+        fullWidth
+        placeholder="Muuta summa"
+        ngModel
+        [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="onPredefinedAmountChange($event)"
+      >
         <nb-option [value]="5">5 euro</nb-option>
         <nb-option [value]="10">10 euro</nb-option>
         <nb-option [value]="20">20 euro</nb-option>
         <nb-option [value]="null">Other</nb-option>
       </nb-select>
-      <nb-select placeholder="Valitse kohde" name="donationDestination" formControlName="donationDestination">
-        <nb-option *ngFor="let destination of oneTimeDestination" [value]="destination"> {{destination}}</nb-option>
+      <input
+        nbInput
+        fullWidth
+        [hidden]="firstStep.get('donationAmount').disabled"
+        name="donationAmount"
+        formControlName="donationAmount"
+        type="number"
+      />
+      <nb-select
+        fullWidth
+        placeholder="Valitse kohde"
+        name="donationDestination"
+        formControlName="donationDestination"
+      >
+        <nb-option
+          *ngFor="let destination of oneTimeDestination"
+          [value]="destination"
+        >
+          {{ destination }}</nb-option
+        >
       </nb-select>
       <button nbButton status="primary" type="submit">Jatka</button>
     </form>
-    <form [hidden]="firstStepCompany.disabled" [formGroup]="firstStepCompany"
-      (ngSubmit)="onFirstStepCompanySubmit(secondStepCompany)" novalidate>
-      <input nbInput type="hidden" disabled formControlName="donationType" value="{{donationTypes.OneTime}}" readonly />
-
-      <input nbInput [hidden]="firstStepCompany.get('donationAmount').disabled" name="donationAmount"
-        formControlName="donationAmount" type="number" />
-      <nb-select ngModel [ngModelOptions]="{ standalone: true }"
-        (ngModelChange)="onPredefinedAmountCompanyChange($event)">
+    <form
+      [hidden]="firstStepCompany.disabled"
+      [formGroup]="firstStepCompany"
+      (ngSubmit)="onFirstStepCompanySubmit(secondStepCompany)"
+      novalidate
+    >
+      <input
+        nbInput
+        fullWidth
+        type="hidden"
+        disabled
+        formControlName="donationType"
+        value="{{ donationTypes.OneTime }}"
+        readonly
+      />
+      <nb-select
+        fullWidth
+        ngModel
+        [ngModelOptions]="{ standalone: true }"
+        (ngModelChange)="onPredefinedAmountCompanyChange($event)"
+      >
         <nb-option [value]="5">5 euro</nb-option>
         <nb-option [value]="10">10 euro</nb-option>
         <nb-option [value]="20">20 euro</nb-option>
         <nb-option [value]="null">Other</nb-option>
       </nb-select>
-      <nb-select name="donationDestination" formControlName="donationDestination">
-        <nb-option *ngFor="let destination of oneTimeDestination" [value]="destination"> {{destination}}</nb-option>
+      <input
+        nbInput
+        fullWidth
+        [hidden]="firstStepCompany.get('donationAmount').disabled"
+        name="donationAmount"
+        formControlName="donationAmount"
+        type="number"
+      />
+      <nb-select
+        fullWidth
+        name="donationDestination"
+        formControlName="donationDestination"
+      >
+        <nb-option
+          *ngFor="let destination of oneTimeDestination"
+          [value]="destination"
+        >
+          {{ destination }}</nb-option
+        >
       </nb-select>
       <button nbButton status="primary" type="submit">Jatka</button>
     </form>
@@ -50,13 +118,50 @@
 </nb-card>
 <!-- Individual -->
 <nb-card>
-  <nb-card-header> What do you want to do ?</nb-card-header>
+  <nb-card-header> Who are you ?</nb-card-header>
   <nb-card-body>
-    <form #secondForm="ngForm" [hidden]="secondStep.disabled" [formGroup]="secondStep">
-      <label for="firstName">First Name</label>
-      <input nbInput type="text" formControlName="firstName" />
-      <label for="lastName">Last Name</label>
-      <input nbInput type="text" formControlName="lastName" />
+    <form
+      #secondForm="ngForm"
+      [hidden]="secondStep.disabled"
+      [formGroup]="secondStep"
+      (ngSubmit)="onSecondStepSubmit(secondForm)"
+    >
+      <div class="form-group">
+        <label class="label" for="firstName">First Name</label>
+        <input nbInput fullWidth type="text" formControlName="firstName" />
+      </div>
+      <div class="form-group">
+        <label class="label" for="lastName">Last Name</label>
+        <input nbInput fullWidth type="text" formControlName="lastName" />
+      </div>
+      <div class="form-group">
+        <label class="label" for="phone">Phone </label>
+        <input nbInput fullWidth type="text" formControlName="phone" />
+      </div>
+      <div class="form-group">
+        <label class="label" for="email">Email </label>
+        <input nbInput fullWidth type="text" formControlName="email" />
+      </div>
+      <div class="form-group">
+        <label class="label" for="country">Country </label>
+        <input
+          nbInput
+          fullWidth
+          type="text"
+          readonly
+          formControlName="country"
+        />
+      </div>
+
+      <div class="form-group">
+        <nb-checkbox formControlName="emailMe"
+          >I would like to receive email</nb-checkbox
+        >
+        <nb-checkbox formControlName="smsMe"
+          >I would like to be notified with SMS</nb-checkbox
+        >
+      </div>
+      <button nbButton type="submit">Let's buy some share</button>
     </form>
   </nb-card-body>
 </nb-card>
