@@ -159,5 +159,9 @@ export class DonationFormComponent implements OnInit {
     console.log("secondstep submit", secondForm);
   }
 
-  ngOnInit() {}
+  getStepForm(firstForm: NgForm, firstFormCompany: NgForm) : NgForm {
+    return firstForm.enabled ? firstForm : firstFormCompany;
+  }
+
+  ngOnInit() { }
 }

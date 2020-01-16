@@ -18,9 +18,10 @@ import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { AppRoutingModule } from "./app-routing.module";
 import { DonationFormComponent } from "./donation-form/donation-form.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CustomAmountComponent } from './custom-amount/custom-amount.component';
 
 @NgModule({
-  declarations: [AppComponent, DonationFormComponent],
+  declarations: [AppComponent, DonationFormComponent, CustomAmountComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
