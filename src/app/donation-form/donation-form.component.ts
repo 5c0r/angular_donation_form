@@ -24,7 +24,7 @@ export class DonationFormComponent implements OnInit {
   @Input() oneTimeDestinations: any[] = [];
   @Input() subscriptionDestinations: any[] = [];
 
-  @Input() predefinedAmount: number[] = [];
+  @Input() predefinedAmount: number[] = [ 10, 20, 30];
   @Input() predefinedAmountBusiness: number[] = [];
 
   readonly zeroStep: FormGroup;
@@ -52,7 +52,7 @@ export class DonationFormComponent implements OnInit {
     this.firstStep = fb.group({
       donationType: fb.control({}, Validators.required),
       donationDestination: fb.control({}, Validators.required),
-      donationAmount: fb.control(0, Validators.required)
+      donationAmount: fb.control(0, Validators.compose([Validators.required,Validators.min(1)]))
     });
 
     // this.firstStep.disable();
@@ -94,7 +94,6 @@ export class DonationFormComponent implements OnInit {
 
   onZeroStepValueChanges(formValue: any): void {
     console.log("onZeroStep value", formValue, this);
-
     console.log("onZeroStep submit", formValue);
 
     // TODO: Reset forms and show which one is relevant
@@ -117,30 +116,6 @@ export class DonationFormComponent implements OnInit {
 
   onZeroStepSubmit($ev: NgForm): void {
     console.log("Do nothing yet");
-  }
-
-  onPredefinedAmountChange(predefineValue: number): void {
-    console.log("onPredefinedAmount", predefineValue);
-
-    const amountControl = this.firstStep.get("donationAmount");
-    if (predefineValue !== null) {
-      amountControl.disable();
-      amountControl.setValue(predefineValue);
-    } else {
-      amountControl.setValue(0);
-      amountControl.enable();
-    }
-  }
-
-  onPredefinedAmountCompanyChange(predefineValue: number): void {
-    const amountControl = this.firstStepCompany.get("donationAmount");
-    if (predefineValue !== null) {
-      amountControl.disable();
-      amountControl.setValue(predefineValue);
-    } else {
-      amountControl.setValue(0);
-      amountControl.enable();
-    }
   }
 
   onDonationTypeChange(form: FormGroup) {

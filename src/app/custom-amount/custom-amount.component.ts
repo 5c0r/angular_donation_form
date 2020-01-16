@@ -15,7 +15,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormControl } from '@angular/f
 })
 export class CustomAmountComponent implements OnInit, ControlValueAccessor {
 
-  @Input() readonly predefinedAmounts: number[] = [3,4,5,6];
+  @Input() public readonly predefinedAmounts: number[] = [10, 20 ,30];
+
   @Input() readonly initialAmount: number = 0;
   @Input() readonly otherAmount: boolean = true;
 
@@ -45,7 +46,7 @@ export class CustomAmountComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    throw new Error("Method not implemented.");
+    this.realAmount = obj;
   }
 
   registerOnChange(fn: any): void {

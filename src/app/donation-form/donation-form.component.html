@@ -32,26 +32,14 @@
               {{ donationTypes.Recurring }}</nb-radio
             >
           </nb-radio-group>
-          <nb-select
-            fullWidth
-            placeholder="Muuta summa"
-            ngModel
-            [ngModelOptions]="{ standalone: true }"
-            (ngModelChange)="onPredefinedAmountChange($event)"
-          >
-            <nb-option [value]="5">5 euro</nb-option>
-            <nb-option [value]="10">10 euro</nb-option>
-            <nb-option [value]="20">20 euro</nb-option>
-            <nb-option [value]="null">Other</nb-option>
-          </nb-select>
-          <input
-            nbInput
-            fullWidth
-            [hidden]="firstStep.get('donationAmount').disabled"
-            name="donationAmount"
-            formControlName="donationAmount"
-            type="number"
-          />
+          <!-- Donation amount -->
+            <app-custom-amount [otherAmount]="true" [predefinedAmounts]="predefinedAmount" formControlName="donationAmount">
+            </app-custom-amount>
+            <div *ngIf="firstStep.controls['donationAmount'].errors != null">
+              {{ firstStep.controls['donationAmount'].errors | json }}
+            </div>
+
+          <!-- End of donation amount-->
           <nb-select
             fullWidth
             placeholder="Valitse kohde"
@@ -83,25 +71,8 @@
             value="{{ donationTypes.OneTime }}"
             readonly
           />
-          <nb-select
-            fullWidth
-            ngModel
-            [ngModelOptions]="{ standalone: true }"
-            (ngModelChange)="onPredefinedAmountCompanyChange($event)"
-          >
-            <nb-option [value]="5">5 euro</nb-option>
-            <nb-option [value]="10">10 euro</nb-option>
-            <nb-option [value]="20">20 euro</nb-option>
-            <nb-option [value]="null">Other</nb-option>
-          </nb-select>
-          <input
-            nbInput
-            fullWidth
-            [hidden]="firstStepCompany.get('donationAmount').disabled"
-            name="donationAmount"
-            formControlName="donationAmount"
-            type="number"
-          />
+          <app-custom-amount [otherAmount]="true" [predefinedAmounts]="predefinedAmount" formControlName="donationAmount">
+          </app-custom-amount>
           <nb-select
             fullWidth
             name="donationDestination"
@@ -206,26 +177,8 @@
           {{ donationTypes.Recurring }}</nb-radio
         >
       </nb-radio-group>
-      <nb-select
-        fullWidth
-        placeholder="Muuta summa"
-        ngModel
-        [ngModelOptions]="{ standalone: true }"
-        (ngModelChange)="onPredefinedAmountChange($event)"
-      >
-        <nb-option [value]="5">5 euro</nb-option>
-        <nb-option [value]="10">10 euro</nb-option>
-        <nb-option [value]="20">20 euro</nb-option>
-        <nb-option [value]="null">Other</nb-option>
-      </nb-select>
-      <input
-        nbInput
-        fullWidth
-        [hidden]="firstStep.get('donationAmount').disabled"
-        name="donationAmount"
-        formControlName="donationAmount"
-        type="number"
-      />
+      <app-custom-amount [otherAmount]="true" [predefinedAmounts]="predefinedAmount" formControlName="donationAmount">
+      </app-custom-amount>
       <nb-select
         fullWidth
         placeholder="Valitse kohde"
@@ -256,25 +209,8 @@
         value="{{ donationTypes.OneTime }}"
         readonly
       />
-      <nb-select
-        fullWidth
-        ngModel
-        [ngModelOptions]="{ standalone: true }"
-        (ngModelChange)="onPredefinedAmountCompanyChange($event)"
-      >
-        <nb-option [value]="5">5 euro</nb-option>
-        <nb-option [value]="10">10 euro</nb-option>
-        <nb-option [value]="20">20 euro</nb-option>
-        <nb-option [value]="null">Other</nb-option>
-      </nb-select>
-      <input
-        nbInput
-        fullWidth
-        [hidden]="firstStepCompany.get('donationAmount').disabled"
-        name="donationAmount"
-        formControlName="donationAmount"
-        type="number"
-      />
+      <app-custom-amount [otherAmount]="true" [predefinedAmounts]="predefinedAmount" formControlName="donationAmount">
+      </app-custom-amount>
       <nb-select
         fullWidth
         name="donationDestination"
@@ -347,4 +283,3 @@
 
 <!-- Custom form -->
 <!-- First try with ngModel first, then formControl -->
-<app-custom-amount></app-custom-amount>

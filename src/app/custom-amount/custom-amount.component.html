@@ -1,8 +1,7 @@
-<div>
-  <nb-select [formControl]="predefinedAmountCtrl">
-    <nb-option *ngFor="let amount of predefinedAmounts" [value]="amount">{{ amount }}</nb-option>
-    <nb-option *ngIf="otherAmount === true" [value]="0">Other amount</nb-option>
-  </nb-select>
-  <!-- Using form control, so we can disable it ?-->
-  <input nbInput [hidden]="predefinedAmountCtrl.value != 0" type="number" [attr.min]="initialAmount" [formControl]="customAmountCtrl" />
-</div>
+<nb-select fullWidth [formControl]="predefinedAmountCtrl">
+  <nb-option *ngIf="otherAmount === true" [value]="0">Other amount</nb-option>
+  <nb-option *ngFor="let amount of predefinedAmounts" [value]="amount">{{ amount }}</nb-option>
+</nb-select>
+<!-- Using form control, so we can disable it ?-->
+<input fullWidth nbInput [hidden]="predefinedAmountCtrl.value != 0" type="number" [attr.min]="initialAmount"
+  [formControl]="customAmountCtrl" />
